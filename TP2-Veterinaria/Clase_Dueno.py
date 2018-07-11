@@ -17,3 +17,5 @@ class Dueno(object):
     def InsertarDueno(self, nombre, apellido, Dni, telefono):
         self.SetDueno(nombre, apellido, Dni, telefono)
         DB().run("INSERT INTO Duenos values(null,'" + self.nombre + "','" + self.apellido + "'," + str(self.DNI) + ",'" + self.telefono + "');")
+
+    def SeleccionarDuenos()

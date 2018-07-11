@@ -10,18 +10,24 @@ DB().SetConection('127.0.0.1', 'root', 'alumno', 'TP2')
 
 
 # charset = "utf8", autocommit = True)
+# Insertar Dueños
 while(1):
     dueno = Dueno()
     nombre = input("Ingrese nombre: ")
+    if nombre == 'Basta':
+        break
     apellido = input("Ingrese apellido: ")
     Dni = input("Ingrese DNI: ")
     telefono = input("Ingrese telefono: ")
     dueno.InsertarDueno(nombre, apellido, Dni, telefono)
+#Select Dueños
 
 select_cursor = DB().run("Select * from Duenos;")
 
 for item in select_cursor:
-    print (item['nombre'])
+    dueno = Dueno()
+    dueno.nombre = item['nombre']
+    print(dueno.nombre)
 
 
 
