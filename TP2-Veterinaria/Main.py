@@ -10,7 +10,8 @@ DB().SetConection('127.0.0.1', 'root', 'alumno', 'TP2')
 
 
 # charset = "utf8", autocommit = True)
-# Insertar Dueños
+# INSERT DUENOS
+'''
 while(1):
     dueno = Dueno()
     nombre = input("Ingrese nombre: ")
@@ -20,14 +21,27 @@ while(1):
     Dni = input("Ingrese DNI: ")
     telefono = input("Ingrese telefono: ")
     dueno.InsertarDueno(nombre, apellido, Dni, telefono)
-#Select Dueños
 
-select_cursor = DB().run("Select * from Duenos;")
+#UPDATE DUENOS
+coso = Dueno()
+coso.UpdateDueno("nombre", "Camila", 9)
+coso.UpdateDueno("apellido", "Reynoso", 9)
 
-for item in select_cursor:
-    dueno = Dueno()
-    dueno.nombre = item['nombre']
-    print(dueno.nombre)
+# DELETE DUENOS
+coso.DeleteDueno(10)
+'''
+# SELECT DUENOS
 
+listaDuenos = Dueno.SeleccionarDuenos()
+dueno = Dueno.SeleccionarDuenosPorID(9)
 
+for item in listaDuenos:
+    print(item.nombre)
+print("solito:" + dueno.nombre)
 
+'''
+Persona_dueno = Dueno()
+print(Persona_dueno)
+Persona_dueno.SeleccionarDuenos(9)
+
+'''
