@@ -14,9 +14,17 @@ class Dueno(object):
         self.DNI = DNI
         self.telefono = telefono
 
+    def DeserializarDueno(self, diccionario_duenos):
+        self.id = diccionario_duenos['id_dueno']
+        self.nombre = diccionario_duenos['nombre']
+        self.apellido = diccionario_duenos['apellido']
+        self.DNI = diccionario_duenos['DNI']
+        self.telefono = diccionario_duenos['telefono']
+
     def InsertarDueno(self, nombre, apellido, Dni, telefono):
         self.SetDueno(nombre, apellido, Dni, telefono)
         DB().run("INSERT INTO Duenos values(null,'" + self.nombre + "','" + self.apellido + "'," + str(self.DNI) + ",'" + self.telefono + "');")
+
 
     @staticmethod
     def SeleccionarDuenos():
@@ -31,20 +39,22 @@ class Dueno(object):
     @staticmethod
     def SeleccionarDuenosPorID(id):
         select_cursor = DB().run("Select * from Duenos where id_dueno = " + str(id) + ";")
+        d = select_cursor.fetchall()
         unDueno = Dueno()
-        print(select_cursor)
-        unDueno.DeserializarDueno(select_cursor)
+        unDueno.DeserializarDueno(d[0])
         return unDueno
 
-    def UpdateDueno(self, cambio, despues, id):
-        DB().run("Update Duenos set " + cambio + " = '" + despues + "' where id_dueno = " + str(id) + ";")
+    @staticmethod
+    def BuscarDueno(id):
+        lista_duenos = Dueno.SeleccionarDuenos()
+        for item in lista_duenos:
+            if item.id == id:
+                return item
+
+    def UpdateDueno(self, id):
+        DB().run("Update Duenos set nombre = '" + self.nombre + "', apellido = '" + self.apellido + "', DNI = " + str(self.DNI) +", telefono = '" + self.telefono + "', id_dueno = " + str(self.id) + " where id_dueno = " + str(id) + ";")
 
     def DeleteDueno(self, id):
         DB().run("Delete from Duenos where id_dueno = " + str(id) +";")
 
-    def DeserializarDueno(self, diccionario_duenos):
-        self.id = diccionario_duenos['id_dueno']
-        self.nombre = diccionario_duenos['nombre']
-        self.apellido = diccionario_duenos['apellido']
-        self.DNI = diccionario_duenos['DNI']
-        self.telefono = diccionario_duenos['telefono']
+#DB().run("Update Duenos set " + cambio + " = '" + despues + "' where id_dueno = " + str(id) + ";")
