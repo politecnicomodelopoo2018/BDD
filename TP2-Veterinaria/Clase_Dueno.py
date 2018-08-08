@@ -56,5 +56,3 @@ class Dueno(object):
 
     def DeleteDueno(self, id):
         DB().run("Delete from Duenos where id_dueno = " + str(id) +";")
-
-#DB().run("Update Duenos set " + cambio + " = '" + despues + "' where id_dueno = " + str(id) + ";")

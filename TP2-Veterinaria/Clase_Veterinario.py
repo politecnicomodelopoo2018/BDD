@@ -42,6 +42,14 @@ class Veterinario(object):
         veterinario.DeserializarVeterinario(d[0])
         return veterinario
 
+    @staticmethod
+    def BuscarVeterinario(id):
+        vt = Veterinario()
+        listaa = vt.SeleccionarVeterinarios()
+        for item in listaa:
+            if item == id:
+                return item
+
     def UpdateVeterinario(self, id):
         DB().run("Update Veterinarios set nombre = '" + self.nombre + "', apellido = '" + self.apellido + "', DNI = " + str(self.DNI) +", sueldo = " + str(self.sueldo) + ", id_veterinario = " + str(self.id) + " where id_veterinario = " + str(id) + ";")
 
