@@ -44,14 +44,14 @@ class Veterinario(object):
 
     @staticmethod
     def BuscarVeterinario(id):
-        vt = Veterinario()
-        listaa = vt.SeleccionarVeterinarios()
+        listaa = Veterinario.SeleccionarVeterinarios()
         for item in listaa:
-            if item == id:
+            if item.id == id:
                 return item
 
     def UpdateVeterinario(self, id):
         DB().run("Update Veterinarios set nombre = '" + self.nombre + "', apellido = '" + self.apellido + "', DNI = " + str(self.DNI) +", sueldo = " + str(self.sueldo) + ", id_veterinario = " + str(self.id) + " where id_veterinario = " + str(id) + ";")
 
-    def DeleteVeterinario(self, id):
+    @staticmethod
+    def DeleteVeterinario(id):
         DB().run("Delete from Veterinarios where id_veterinario = " + str(id) + ";")

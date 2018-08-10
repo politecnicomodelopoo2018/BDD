@@ -54,5 +54,6 @@ class Dueno(object):
     def UpdateDueno(self, id):
         DB().run("Update Duenos set nombre = '" + self.nombre + "', apellido = '" + self.apellido + "', DNI = " + str(self.DNI) +", telefono = '" + self.telefono + "', id_dueno = " + str(self.id) + " where id_dueno = " + str(id) + ";")
 
-    def DeleteDueno(self, id):
+    @staticmethod
+    def DeleteDueno(id):
         DB().run("Delete from Duenos where id_dueno = " + str(id) +";")

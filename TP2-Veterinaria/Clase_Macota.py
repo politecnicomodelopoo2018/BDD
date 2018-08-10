@@ -13,7 +13,6 @@ class Mascota(object):
         self.dueno = dueno
 
     def DeserializarMascota(self, dicc_mascotas):
-        dueno_obj = Dueno()
         self.id = dicc_mascotas['id_mascota']
         self.nombre = dicc_mascotas['nombre']
         self.tipo = dicc_mascotas['tipo']
@@ -32,19 +31,18 @@ class Mascota(object):
         return listam
 
     @staticmethod
-    def SelectMascotaporID(id):
-        select_cursor = DB().run("Select * from Mascotas where id_mascota = " + str(id) + ";")
+    def SelectMascotaporID(idd):
+        select_cursor = DB().run("Select * from Mascotas where id_mascota = " + str(idd) + ";")
         d = select_cursor.fetchall()
-        mascota = Mascota()
-        mascota.DeserializarMascota(d[0])
-        return mascota
+        unamascota = Mascota()
+        unamascota.DeserializarMascota(d[0])
+        return unamascota
 
     @staticmethod
     def BuscarMascota(id):
-        mc = Mascota()
-        listaa = mc.SeleccionarVeterinarios()
+        listaa = Mascota.SelectMascota()
         for item in listaa:
-            if item == id:
+            if item.id == id:
                 return item
 
 
@@ -53,8 +51,9 @@ class Mascota(object):
         DB().run("insert into Mascotas values(NULL,'" + self.nombre + "','" + self.tipo + "'," + self.dueno + ");")
 
     def UpdateMascota(self, id):
-        DB().run("Update Mascotas set nombre = '" + self.nombre + "', tipo = '" + self.tipo + "', dueno = " + self.dueno + "where id_mascota = " + str(id) + ";")
+        DB().run("Update Mascotas set id_mascota = " + str(self.id) + ", nombre = '" + self.nombre + "', tipo = '" + self.tipo + "', Duenos_id_duenos = " + str(self.dueno.id) + " where id_mascota = " + str(id) + ";")
 
-    def DeleteMascota(self, id):
+    @staticmethod
+    def DeleteMascota(id):
         DB().run("Delete from Mascotas where id_mascota = " + str(id) + ";")
 
