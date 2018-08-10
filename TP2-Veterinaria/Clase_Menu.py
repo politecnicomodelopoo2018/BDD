@@ -12,3 +12,8 @@ class Menu(object):
         print("2.Update")
         print("3.Delete")
         print("4.Select")
+
+    @staticmethod
+    def MenuSelects():
+        print("1.Select all")
+        print("2.Select por id")

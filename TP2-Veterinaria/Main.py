@@ -24,19 +24,27 @@ while(1):
     if opcion == "1":
         print("DUENOS")
         Menu.MenuFunciones()
-        opcion1 = input("Duenos")
+        opcion_duenos = input("Elija la funcion")
+        if opcion_duenos == "1":
+
+        elif opcion_duenos == "2":
+
+        elif opcion_duenos == "3":
+        elif opcion_duenos == "4":
+        else:
+            equivocacion = input("te equivocaste we")
     elif opcion == "2":
         print("VETERINARIOS")
         Menu.MenuFunciones()
-        opcion1 = input("veterinarios")
+        opcion_veterinarios = input("Elija la funcion")
     elif opcion == "3":
         print("MASCOTAS")
         Menu.MenuFunciones()
-        opcion1 = input("mascotas")
+        opcion_mascotas = input("Elija la funcion")
     elif opcion == "4":
         print("CONSULTAS")
         Menu.MenuFunciones()
-        opcion1 = input("consultas")
+        opcion_consultas = input("Elija la funcion")
     else:
         print("Opcion incorrecta, ingrese otre")
         otre = input("hole")
