@@ -51,7 +51,7 @@ class Mascota(object):
         DB().run("insert into Mascotas values(NULL,'" + self.nombre + "','" + self.tipo + "'," + self.dueno + ");")
 
     def UpdateMascota(self, id):
-        DB().run("Update Mascotas set id_mascota = " + str(self.id) + ", nombre = '" + self.nombre + "', tipo = '" + self.tipo + "', Duenos_id_duenos = " + str(self.dueno.id) + " where id_mascota = " + str(id) + ";")
+        DB().run("Update Mascotas set id_mascota = " + str(self.id) + ", nombre = '" + self.nombre + "', tipo = '" + self.tipo + "', Duenos_id_duenos = " + self.dueno + " where id_mascota = " + str(id) + ";")
 
     @staticmethod
     def DeleteMascota(id):

@@ -6,24 +6,25 @@ class Consulta(object):
     id = None
     precio = None
     diagnostico = None
-    id_mascota = None
-    id_veterinario = None
+    mascota = None
+    veterinario = None
 
     def SetConsulta(self, precio, diagnostico, id_mascota, id_veterinario):
         self.precio = precio
         self.diagnostico = diagnostico
-        self.id_mascota = id_mascota
-        self.id_veterinario = id_veterinario
-
+        mascota = Mascota.SelectMascotaporID(id_mascota)
+        self.mascota = mascota
+        veterinario = Veterinario.SeleccionarVeterinariosPorID(id_veterinario)
+        self.veterinario = veterinario
 
     def DeserializarConsultas(self, consulta_dicc):
         self.id = consulta_dicc['id_consulta']
         self.precio = consulta_dicc['precio']
         self.diagnostico = consulta_dicc['diagnostico']
         idMascota = consulta_dicc['Mascotas_id_mascota']
-        self.id_mascota = Mascota.BuscarMascota(idMascota)
+        self.mascota = Mascota.BuscarMascota(idMascota)
         idVeterinario = consulta_dicc['Veterinarios_id_veterinario']
-        self.id_veterinario = Veterinario.BuscarVeterinario(idVeterinario)
+        self.veterinario = Veterinario.BuscarVeterinario(idVeterinario)
 
     @staticmethod
     def SelectConsultas():
@@ -46,10 +47,10 @@ class Consulta(object):
 
     def InsertarConsulta(self, precio, diagnostico, mascota, vet):
         self.SetConsulta(precio, diagnostico, mascota, vet)
-        DB().run("insert into Consulta values(NULL," + str(self.precio) + ",'" + self.diagnostico + "'," + str(self.id_veterinario) + "," + str(self.id_mascota) + ");")
+        DB().run("insert into Consulta values(NULL," + str(self.precio) + ",'" + self.diagnostico + "'," + str(self.veterinario.id) + "," + str(self.mascota.id) + ");")
 
     def UpdateConsulta(self, idd):
-        DB().run("Update Consulta set id_consulta = " + str(self.id) + ", precio = " + str(self.precio) + ", diagnostico = '" + self.diagnostico + "', Veterinarios_id_veterinario = " + str(self.id_veterinario.id) + ", Mascotas_id_mascota = " + str(self.id_mascota.id) + " where id_consulta = " + str(idd) + ";")
+        DB().run("Update Consulta set id_consulta = " + str(self.id) + ", precio = " + str(self.precio) + ", diagnostico = '" + self.diagnostico + "', Veterinarios_id_veterinario = " + str(self.veterinario.id) + ", Mascotas_id_mascota = " + str(self.mascota.id) + " where id_consulta = " + str(idd) + ";")
 
     @staticmethod
     def DeleteConsulta(id):
