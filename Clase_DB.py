@@ -17,7 +17,7 @@ class DB(object):
         self.__db = db
 
     def run(self, query):
-        db = pymysql.connect(host = self.__host, user = self.__user,  db = self.__db, charset = "utf8", autocommit = True)
+        db = pymysql.connect(host = self.__host, user = self.__user, passwd = self.__password, db = self.__db, charset = "utf8", autocommit = True)
         cursor = db.cursor(pymysql.cursors.DictCursor)
         cursor.execute(query)
         db.close()
