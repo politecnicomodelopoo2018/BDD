@@ -22,7 +22,6 @@ while(loop):
     print("MENU")
     Menu.MenuPrincipal()
     opcion = input("Elija una opcion: ")
-
     if opcion == "1":
         while(loop):
             os.system('cls')
@@ -31,7 +30,7 @@ while(loop):
             opcion_duenos = input("Elija la funcion")
 
             if opcion_duenos == "1":
-                # INSERT DUENOS
+                        # INSERT DUENOS
                 while (1):
                     os.system('cls')
                     print("PRINT DUENOS")
@@ -39,7 +38,7 @@ while(loop):
                     nombre = input("Ingrese nombre: ")
 
                     if nombre == 'Basta':
-                        break
+                      break
 
                     apellido = input("Ingrese apellido: ")
                     Dni = input("Ingrese DNI: ")
